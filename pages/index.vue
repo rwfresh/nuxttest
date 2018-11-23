@@ -34,6 +34,21 @@
         <div class="card-content">
           <div class="content has-text-centered">
             <h1>Box 1</h1>
+            <svg 
+              version="1.1" 
+              xmlns="http://www.w3.org/2000/svg" 
+              xmlns:xlink="http://www.w3.org/1999/xlink" 
+              x="0px" 
+              y="0px"
+              viewBox="0 0 100 100" 
+              style="border:1px solid #000000" 
+              xml:space="preserve">
+              <g 
+                fill="transparent" 
+                stroke="green" 
+                stroke-width=".5" 
+                transform="translate(50,40)"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -71,11 +86,11 @@
 </template>
 
 <script>
-import BLogo from '@/components/Logo'
+import SvgCircle from '@/components/SvgCircle'
 
 export default {
   name: 'HomePage',
-  components: { BLogo },
+  components: { SvgCircle },
   data() {
     return {
       features: [
@@ -99,7 +114,9 @@ export default {
           title: 'Lightweight',
           content: `<span>No other internal dependency</span>`
         }
-      ]
+      ],
+      circles: [],
+      circle: '<circle cx="40" cy="40" r="25" />'
     }
   }
 }

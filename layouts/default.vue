@@ -25,13 +25,13 @@
           <div class="navbar-end">                        
             <a 
               href="" 
-              class="button is-rounded is-outlined mrs">front-end</a>
+              class="button is-rounded is-outlined mrs flip-in-hor-bottom">design</a>
             <a 
               href="" 
-              class="button is-rounded is-outlined mrs">back-end</a>
+              class="button is-rounded is-outlined mrs flip-in-hor-bottom">architect</a>
             <a 
               href="" 
-              class="button is-rounded is-outlined mrs">all-end</a>           
+              class="button is-rounded is-outlined mrs flip-in-hor-bottom">deliver</a>           
           </div>
        
         </div>
@@ -63,21 +63,38 @@ export default {
 html {
   height: 100%;
 }
-/** body {
- height: 100%;
-  background: #4ca3fb;
-  background: -moz-linear-gradient(-45deg, #4ca3fb 1%, #deecf9 100%);
-  background: -webkit-linear-gradient(-45deg, #4ca3fb 1%, #deecf9 100%);
-  background: linear-gradient(135deg, #4ca3fb 1%, #deecf9 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ca3fb', endColorstr='#deecf9',GradientType=1 );
+
+.flip-in-hor-bottom {
+  -webkit-animation: flip-in-hor-bottom 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: flip-in-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-.navbar {
-  background: #4ca3fb;
-  background: -moz-linear-gradient(-45deg, #deecf9 1%, #4ca3fb 100%);
-  background: -webkit-linear-gradient(-45deg, #deecf9 1%, #4ca3fb 100%);
-  background: linear-gradient(135deg, #deecf9 1%, #4ca3fb 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deecf9', endColorstr='#4ca3fb',GradientType=1 );
-} **/
+
+@-webkit-keyframes flip-in-hor-bottom {
+  0% {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+@keyframes flip-in-hor-bottom {
+  0% {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
 .navbar-link {
   color: #6d6f71 !important;
 }

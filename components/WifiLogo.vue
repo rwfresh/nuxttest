@@ -71,42 +71,42 @@
       </g>
       <path 
         ref="stick1"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M26.19,36.75c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.06-4.59-4.59V28.5
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V36.75z"/>
       <path 
         ref="stick2"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M9.18,42.75c0,2.54-2.06,4.59-4.59,4.59l0,0C2.06,47.34,0,45.29,0,42.75V42.5
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V42.75z"/>
       <path 
         ref="stick3"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M44.55,34.22c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.06-4.59-4.59V14.98
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V34.22z"/>
       <path 
         ref="stick4"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M62.92,52.75c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.06-4.59-4.59V10.5
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V52.75z"/>
       <path 
         ref="stick5"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M81.29,61.75c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.06-4.59-4.59V14.5
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V61.75z"/>
       <path 
         ref="stick6"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M99.66,43.94c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.06-4.59-4.59V9.69
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V43.94z"/>
       <path 
         ref="stick7"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M114.33,18.84c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.05-4.59-4.59V4.59
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V18.84z"/>
       <path 
         ref="stick8"
-        style="fill:#DBE122;" 
+        style="fill:#DBE122; opacity:0" 
         d="M128.36,9.16c0,2.54-2.06,4.59-4.59,4.59l0,0c-2.54,0-4.59-2.06-4.59-4.59V8.92
 		c0-2.54,2.06-4.59,4.59-4.59l0,0c2.54,0,4.59,2.06,4.59,4.59V9.16z"/>
     </g>
@@ -130,48 +130,43 @@ export default {
         sticks.push(this.$refs[key])
       }
     }
-    console.log(this.$refs)
+
     this.timeline = new TimelineMax({
       //   onComplete: () => this.timeline.restart()
     })
 
-    /**  this.timeline.to(letters[0], 0.4, {
-      scale: 0.2,
-      rotation: 360,
-      ease: Back.easeOut.config(1.7)
-    }) */
-    this.timeline.to(letters[0], 1.2, {
-      scale: 1,
-      rotation: '-=360',
-      ease: Elastic.easeOut.config(2.5, 0.5)
-    })
-
     this.timeline.staggerFrom(
       letters,
-      0.6,
+      0.4,
       {
-        rotation: 360,
+        opacity: 0,
         delay: 0.4,
         ease: Power4.easeIn
       },
-      0.4
+      0.1
     )
-    this.timeline.staggerTo(
+    this.timeline.staggerFromTo(
       sticks,
-      0.4,
+      1,
       {
+        opacity: 0,
+        delay: 0.4,
+        ease: Power4.easeIn
+      },
+      {
+        opacity: 1,
         scale: 1.4,
-        delay: 0.1,
+        delay: 0,
         ease: Elastic.easeOut
       },
       0.1
     )
     this.timeline.staggerTo(
-      sticks,
-      0.4,
+      sticks.reverse(),
+      1,
       {
         scale: 1,
-        delay: 0.1,
+        delay: 0,
         ease: Elastic.easeOut
       },
       0.1
