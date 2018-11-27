@@ -1,5 +1,6 @@
 <template>
   <div>
+    <intro @introComplete="introCompleted" />
     <section>
       <nav 
         ref="navbar"
@@ -7,21 +8,18 @@
         role="navigation" 
         aria-label="main navigation">
         <div class="container">
-          <div 
-            class="navbar-brand" 
-          >
+          <div class="navbar-brand">
             <a
               class="navbar-item" 
               href="/">
-              <wifi-logo />
+              <wifi-logo v-if="showLogo" />
             </a>            
             <div class="navbar-burger">
               <span/>
               <span/>
               <span/>
             </div>
-          </div>
-         
+          </div>         
           <div class="navbar-end">                        
             <a 
               href="" 
@@ -47,16 +45,21 @@
 
 <script>
 import wifiLogo from '@/components/WifiLogo'
+import intro from '@/components/Intro'
 
 export default {
-  components: { wifiLogo },
+  components: { wifiLogo, intro },
   data() {
     return {
-      timeline: null
+      showLogo: false
     }
   },
   mounted() {},
-  methods: {}
+  methods: {
+    introCompleted() {
+      this.showLogo = true
+    }
+  }
 }
 </script>
 <style>
