@@ -136,8 +136,13 @@ export default {
         0
       )
       .to(wifiNameContainer, 1, {
+        scale: 1.5,
+        ease: Elastic.easeInOut
+      })
+      .to(wifiNameContainer, 1, {
         rotation: 1080,
-        scale: 500
+        scale: 500,
+        skewY: '30deg'
       })
       .staggerTo(
         '#linear stop',

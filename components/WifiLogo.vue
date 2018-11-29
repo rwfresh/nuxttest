@@ -149,19 +149,20 @@ export default {
         opacity: 1,
         scale: 1.4,
         delay: 0,
-        ease: Elastic.easeOut
+        ease: Elastic.easeInOut
       },
       0.1
     )
     this.timeline.staggerTo(
-      sticks.reverse(),
+      sticks,
       1,
       {
         scale: 1,
         delay: 0,
-        ease: Elastic.easeOut
+        ease: Elastic.easeInOut
       },
-      0.1
+      0.1,
+      -1
     )
 
     if (typeof window !== 'undefined') {
