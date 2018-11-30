@@ -63,12 +63,12 @@
         </g>
       </svg>
     </div>
+    <div id="testTrigger"/>
   </section>
 </template>
 
 <script>
 import SvgCircle from '@/components/SvgCircle'
-import TweenMax from 'gsap'
 
 export default {
   name: 'HomePage',
@@ -76,6 +76,7 @@ export default {
   data() {
     return {
       timeline: null,
+      scrollCtrl: null,
       circleClips: [
         {
           id: 'mask_b',
@@ -150,10 +151,11 @@ export default {
     }
   },
   mounted() {
+    console.log(this)
     const flowerClip = this.$refs.flowerClip
     const flowerCircle = this.$refs.flowerCircle
-
-    this.timeline = new TimelineMax({
+    console.log(this.$gsap)
+    this.timeline = new this.$gsap.TimelineMax({
       //   onComplete: () => this.timeline.restart()
     })
     this.timeline
@@ -212,6 +214,14 @@ export default {
         },
         '-=3'
       )
+
+    // use scrollmagic
+    this.scrollCtrl = new this.$gsap.Controller()
+    let flowerScene = new this.$scrollmagic.Scene({
+      triggerElement: '#testTrigger'
+    }).setTween(this.timeline)
+
+    this.scrollCtrl.addScene([flowerScene])
   }
 }
 </script>

@@ -142,27 +142,29 @@ export default {
       1,
       {
         opacity: 0,
-        delay: 0.4,
+        delay: 0,
         ease: Power4.easeIn
       },
       {
         opacity: 1,
-        scale: 1.4,
+        scale: 1.8,
+        rotation: -90,
         delay: 0,
         ease: Elastic.easeInOut
       },
       0.1
     )
     this.timeline.staggerTo(
-      sticks,
+      sticks.reverse(),
       1,
       {
         scale: 1,
         delay: 0,
+        rotation: 360,
         ease: Elastic.easeInOut
       },
-      0.1,
-      -1
+      0.05,
+      '-=.8'
     )
 
     if (typeof window !== 'undefined') {

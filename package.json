@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "gsap": "^2.0.2",
+    "ks-vue-scrollmagic": "^1.0.2",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.2.1"
   },

@@ -36,7 +36,12 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: [
+    {
+      src: '~plugins/ksvuefp',
+      ssr: false
+    }
+  ],
 
   /*
   ** Nuxt.js modules
@@ -54,6 +59,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
