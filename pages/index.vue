@@ -4,15 +4,16 @@
       class="content has-text-centered" 
       style="width:100%; height:500px">            
       <svg 
-        version="1.1" 
+        version="1.1"
         xmlns="http://www.w3.org/2000/svg" 
         xmlns:xlink="http://www.w3.org/1999/xlink" 
         x="0px" 
-        y="0px"
-        width="100%" 
-        height="100%"
-        viewBox="0 0 100 100"               
-        xml:space="preserve">
+        y="0px" 
+        width="100%"
+        height="100%" 
+        viewBox="0 0 100 100"
+        xml:space="preserve"               
+        @mouseover="spinFlower">
         <defs>
           <clipPath 
             v-for="clips in circleClips" 
@@ -75,6 +76,7 @@ export default {
   components: { SvgCircle },
   data() {
     return {
+      scrollTimeline: null,
       timeline: null,
       scrollCtrl: null,
       circleClips: [
@@ -154,11 +156,20 @@ export default {
     this.animateHome()
   },
   methods: {
+    spinFlower() {
+      this.timeline.restart()
+    },
     animateHome() {
+      this.timeline = new TimelineLite()
+      this.timeline.to(this.$refs.flowerCircle, 3, {
+        rotation: 360,
+        transformOrigin: '50% 50%'
+      })
+
       const flowerClip = this.$refs.flowerClip
       const flowerCircle = this.$refs.flowerCircle
-      this.timeline = new TimelineLite()
-      this.timeline
+      this.scrollTimeline = new TimelineLite()
+      this.scrollTimeline
         .to(flowerClip, 1, {
           scale: 0.1,
           rotation: 720,
@@ -219,7 +230,7 @@ export default {
       this.scrollCtrl = new this.$scrollmagic.Controller()
       let flowerScene = new this.$scrollmagic.Scene({
         triggerElement: this.$refs.testTrigger
-      }).setTween(this.timeline)
+      }).setTween(this.scrollTimeline)
 
       this.scrollCtrl.addScene([flowerScene])
     }
