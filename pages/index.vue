@@ -1,8 +1,9 @@
 <template>
   <section class="section">        
     <div 
+      :class="{ active: isActive }"
       class="content has-text-centered" 
-      style="width:100%; height:500px">            
+      style="width:100%; height:500px; position:fixed">            
       <svg 
         version="1.1"
         xmlns="http://www.w3.org/2000/svg" 
@@ -13,7 +14,8 @@
         height="100%" 
         viewBox="0 0 100 100"
         xml:space="preserve"               
-        @mouseover="spinFlower">
+        @mouseover="spinFlower"
+        @mouseout="stopFlower">
         <defs>
           <clipPath 
             v-for="clips in circleClips" 
@@ -61,7 +63,9 @@
           />
         </g>
       </svg>
-    </div><div style="height:20px;"/>
+    </div>
+    <div style="width:100%; height:500px"/>
+    <div style="height:20px;"/>
     <div ref="testTrigger">asdfasdf</div>
     <div style="height:400px;"/>
   </section>
@@ -157,7 +161,14 @@ export default {
   },
   methods: {
     spinFlower() {
-      this.timeline.restart()
+      if (this.timeline.progress() == 1) {
+        this.timeline.restart()
+      } else {
+        this.timeline.resume()
+      }
+    },
+    stopFlower() {
+      this.timeline.pause()
     },
     animateHome() {
       this.timeline = new TimelineLite()
@@ -237,3 +248,5 @@ export default {
   }
 }
 </script>
+<style>
+</style>
