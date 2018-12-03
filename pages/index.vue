@@ -30,8 +30,7 @@
               fill="none" />
           </clipPath>                
         </defs>
-        <g 
-          id="flowerClip" 
+        <g           
           ref="flowerClip"                 
           transform="translate(45,40)">
           <circle 
@@ -45,8 +44,7 @@
             :transform="circle.transform"                  
           />
         </g>
-        <g 
-          id="flowerCircle" 
+        <g           
           ref="flowerCircle"
           transform="translate(45,40)">                                
           <circle 
@@ -62,13 +60,15 @@
           />
         </g>
       </svg>
-    </div>
-    <div id="testTrigger"/>
+    </div><div style="height:20px;"/>
+    <div ref="testTrigger">asdfasdf</div>
+    <div style="height:400px;"/>
   </section>
 </template>
 
 <script>
 import SvgCircle from '@/components/SvgCircle'
+import { TimelineLite } from 'gsap'
 
 export default {
   name: 'HomePage',
@@ -151,77 +151,78 @@ export default {
     }
   },
   mounted() {
-    console.log(this)
-    const flowerClip = this.$refs.flowerClip
-    const flowerCircle = this.$refs.flowerCircle
-    console.log(this.$gsap)
-    this.timeline = new this.$gsap.TimelineMax({
-      //   onComplete: () => this.timeline.restart()
-    })
-    this.timeline
-      .to(flowerClip, 1, {
-        scale: 0.1,
-        rotation: 720,
-        opacity: 0,
-        transformOrigin: '0% 0%',
-        skewX: 45
-      })
-      .to(flowerClip, 3, {
-        x: 45,
-        y: 40,
-        skewX: 0,
-        opacity: 1,
-        scale: 1,
-        rotation: -720
-      })
-      .to(flowerClip, 3, {
-        rotation: 1080,
-        transformOrigin: '50% 50%'
-      })
-      .to(
-        flowerCircle,
-        3,
-        {
-          rotation: 360,
+    this.animateHome()
+  },
+  methods: {
+    animateHome() {
+      const flowerClip = this.$refs.flowerClip
+      const flowerCircle = this.$refs.flowerCircle
+      this.timeline = new TimelineLite()
+      this.timeline
+        .to(flowerClip, 1, {
+          scale: 0.1,
+          rotation: 720,
+          opacity: 0,
+          transformOrigin: '0% 0%',
+          skewX: 45
+        })
+        .to(flowerClip, 3, {
+          x: 45,
+          y: 40,
+          skewX: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: -720
+        })
+        .to(flowerClip, 3, {
+          rotation: 1080,
           transformOrigin: '50% 50%'
-        },
-        '-=0.50'
-      )
-      .to(
-        flowerCircle,
-        3,
-        {
-          scale: 0.5
-        },
-        '-=0.50'
-      )
-      .to(
-        flowerClip,
-        3,
-        {
-          scale: 0.5
-        },
-        '-=1'
-      )
-      .to(flowerCircle, 3, {
-        scale: 2
-      })
-      .to(
-        flowerClip,
-        3,
-        {
+        })
+        .to(
+          flowerCircle,
+          3,
+          {
+            rotation: 360,
+            transformOrigin: '50% 50%'
+          },
+          '-=0.50'
+        )
+        .to(
+          flowerCircle,
+          3,
+          {
+            scale: 0.5
+          },
+          '-=0.50'
+        )
+        .to(
+          flowerClip,
+          3,
+          {
+            scale: 0.5
+          },
+          '-=1'
+        )
+        .to(flowerCircle, 3, {
           scale: 2
-        },
-        '-=3'
-      )
+        })
+        .to(
+          flowerClip,
+          3,
+          {
+            scale: 2
+          },
+          '-=3'
+        )
 
-    // use scrollmagic
-    this.scrollCtrl = new this.$gsap.Controller()
-    let flowerScene = new this.$scrollmagic.Scene({
-      triggerElement: '#testTrigger'
-    }).setTween(this.timeline)
+      // use scrollmagic
+      this.scrollCtrl = new this.$scrollmagic.Controller()
+      let flowerScene = new this.$scrollmagic.Scene({
+        triggerElement: this.$refs.testTrigger
+      }).setTween(this.timeline)
 
-    this.scrollCtrl.addScene([flowerScene])
+      this.scrollCtrl.addScene([flowerScene])
+    }
   }
 }
 </script>
