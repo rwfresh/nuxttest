@@ -1,7 +1,6 @@
 <template>
   <section class="section">        
     <div 
-      :class="{ active: isActive }"
       class="content has-text-centered" 
       style="width:100%; height:500px; position:fixed">            
       <svg 
